@@ -1,0 +1,8 @@
+body {
+    background-image: url('../images/background.png');
+    background-size: cover;
+}
+
+a.nav-link {
+    font-size: larger;
+}
