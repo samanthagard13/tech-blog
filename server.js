@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const session = require('express-session');
 const routes = require('./routes');
 const exphbs = require('express-handlebars');
 
@@ -30,8 +31,16 @@ app.set('view engine', 'handlebars');
 
 app.use(routes);
 
+app.use(session({
+  secret: 'secret-key',
+  resave: false,
+  saveUninitialized: false
+}));
+
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => 
     console.log('Now listening on PORT:', PORT)
     )
 });
+
+module.exports = sequelize;

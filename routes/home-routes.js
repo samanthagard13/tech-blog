@@ -1,19 +1,34 @@
 const router = require('express').Router();
+const blogPost = require('../models/blog-post');
 
 router.get('/', async (req, res) => {
     try {
-        res.render('home-page');
+        const posts = await blogPost.findAll();
+        res.render('home-page', { posts });
     } catch (error) {
         console.error('Error rendering main page: ', error);
     }
 });
 
-module.exports = router;
+router.get('/post', (req, res) => {
+    const postId = req.params.id;
 
-router.get('/contact', async (req, res) => {
     try {
-        res.render('contact');
+        const post = blogPost.findByPk(postId);
+
+        res.render('single-post', { post });
     } catch (error) {
-        console.error('Error rendering contact page: ', error);
+        console.error(' Error displaying post: ', error);
+    }
+    
+});
+
+router.get('/log-in', (req, res) => {
+    try {
+        res.render('/log-in');
+    } catch (error) {
+        console.error(' Error displaying login page: ', error);
     }
 });
+
+module.exports = router;

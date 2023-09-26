@@ -1,0 +1,23 @@
+<div>
+    <h1>Recent Posts</h1>
+</div>
+
+{{#each blogPost}}
+
+<div class="flex-container card blog-post">
+    <div class="card-body">
+        <div class="row">
+        <div class="col-6 title">
+            <h2>{{ title }}</h2>
+        </div>
+        <div class="col-6 name-date">
+            <p>{{ name }} {{ dateCreated }}</p>
+        </div>
+        </div>
+        <div class="col-12 content">
+            <p>{{ contents }}</p>
+        </div>
+    </div>
+</div>
+
+{{/each}}
