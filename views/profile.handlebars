@@ -1,0 +1,26 @@
+<div class="text-center mt-4 recPosts">
+    <h1>Your Posts</h1>
+</div>
+<div>
+    <buttom>New Post</buttom>
+</div>
+
+{{#each blogPost}}
+
+<div class="flex-container card blog-post">
+    <div class="card-body">
+        <div class="row">
+        <div class="col-6 title">
+            <h2>{{ title }}</h2>
+        </div>
+        <div class="col-6 name-date">
+            <p>{{ name }} {{ dateCreated }}</p>
+        </div>
+        </div>
+        <div class="col-12 content">
+            <p>{{ contents }}</p>
+        </div>
+    </div>
+</div>
+
+{{/each}}

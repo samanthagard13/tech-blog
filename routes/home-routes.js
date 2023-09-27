@@ -32,5 +32,13 @@ router.get('/log-in', (req, res) => {
     }
 });
 
+router.get('/sign-up', (req, res) => {
+    try {
+        res.render('sign-up');
+    } catch (error) {
+        console.error(' Error displaying login page: ', error);
+    }
+});
+
 
 module.exports = router;

@@ -1,11 +1,19 @@
-<div class="card">
-    <div class="card-body">
-        <h1>Log In</h1>
-        <div class="input-group">
-            <label>Username</label>
-            <input>
-            <label>Password</label>
-            <input>
+<div class="container d-flex align-items-center justify-content-center mt-5">
+  <div class="row">
+    <div class="card col-12">
+      <div class="card-body text-center p-3 mt-3">
+        <div class="input-group p-3">
+          <label class="m-2"><strong>Username</strong></label>
+          <input type="text" id="username" name="username" required>
         </div>
+        <div class="input-group p-3">
+          <label class="m-2"><strong>Password</strong></label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="m-3 p-2 logIn-btn"><strong>Log In</strong></button>
+        <br/>
+        <span>Don't have an account for The Tech Blog? <a href="/sign-up">Sign Up Here!</a></span>
+      </div>
     </div>
+  </div>
 </div>

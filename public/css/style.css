@@ -1,8 +1,28 @@
 body {
     background-image: url('../images/background.png');
     background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Oxygen', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+
 }
 
 a.nav-link {
     font-size: larger;
+    color: black;
 }
+
+/* home page */ 
+
+.recPosts {
+    color: white;
+}
+
+/* log in page */
+
+.logIn-btn {
+    border: none;
+    background-color: rgb(183, 183, 183);
+    border-radius: 5px;
+}
+
