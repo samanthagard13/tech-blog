@@ -1,4 +1,11 @@
+const path = require('path');
+
 module.exports = {
+    defaultLayout: 'main',
+    extname: '.handlebars',
+    layoutsDir: path.join(__dirname, 'views/layouts'),
+    partialsDir: path.join(__dirname, 'views'),
+    helpers: {
     format_date: (date) => {
       // Format date as MM/DD/YYYY
       return date.toLocaleDateString();
@@ -19,5 +26,6 @@ module.exports = {
         return `<span for="img" aria-label="gear">⚙️</span>`;
       }
     },
-  };
+  },
+};
   
