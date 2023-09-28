@@ -25,14 +25,16 @@
           <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/dashboard">Dashboard</a>
+          <a class="nav-link" href="/profile">Dashboard</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/log-in">Log In</a>
         </li>
+        {{#if logged_in}}
         <li class="nav-item">
           <a class="nav-link" id="logout" href="/">Log Out</a>
         </li>
+        {{/if}}
       </ul>
     </div>
   </div>
@@ -44,6 +46,10 @@
   {{{body}}}
 
 </main>
-    
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>    
+<script src="./js/login.js"></script>    
+<script src="./js/sign-up.js"></script>
 
 </html>

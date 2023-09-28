@@ -4,7 +4,6 @@ const session = require('express-session');
 const routes = require('./routes');
 const exphbs = require('express-handlebars');
 const helpers = require('./utils/helpers');
-const bcrypt = require('bcrypt');
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
