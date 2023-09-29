@@ -15,7 +15,7 @@ const signUp = async (event) => {
               });
           
               if (response.ok) {
-                document.location.replace('/profile');
+                document.location.replace('/log-in');
               } else {
                 alert(response.statusText);
               }

@@ -34,7 +34,7 @@ router.get('/log-in', async (req, res) => {
     }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/log-in', async (req, res) => {
     const { username, password } = req.body;
   
     try {
@@ -45,9 +45,10 @@ router.post('/login', async (req, res) => {
       }
   
       req.session.user_id = user.id;
-  
-      res.status(200).json({ message: 'Login successful', user });
-      res.redirect('/profile');
+
+      res.redirect('/');
+      //res.status(200).json({ message: 'Login successful', user });
+      
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: 'Internal server error' });
@@ -65,10 +66,6 @@ router.get('/sign-up', async (req, res) => {
 router.post('/sign-up', validate, async (req, res) => {
     const { username, password } = req.body;
     try {
-        const existingUser = await User.findOne({ where: { username } });
-        if (existingUser) {
-          return res.status(400).render('error', { error: 'Username already taken' });
-        }
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = await User.create({ username, password: hashedPassword });
@@ -76,6 +73,14 @@ console.log('new user: ', newUser);
         res.redirect('/log-in');
       } catch (error) {
         console.error('sign up unsuccessful: ', error);
+    }
+});
+
+router.get('/profile', (req, res) => {
+    try {
+        res.render('profile');
+    } catch (error) {
+        console.error(' Error displaying login page: ', error);
     }
 })
 
