@@ -6,7 +6,21 @@ function validatePasswordLength(req, res, next) {
     }
 
     next();
-  }
+  };
+
+  const requireAuth = (req, res, next) => {
+    if (req.session.user_id) {
+        // User is logged in
+        res.locals.loggedIn = true;
+    } else {
+        // User is not logged in
+        res.locals.loggedIn = false;
+    }
+    next();
+};
   
-  module.exports = validatePasswordLength;
+  module.exports = {
+    validatePasswordLength,
+    requireAuth,
+  }
   

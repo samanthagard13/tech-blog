@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { BlogPost, User } = require('../models/index');
-const validate = require('../utils/login');
+const { validatePasswordLength } = require('../utils/login');
 const bcrypt = require('bcrypt');
 
 router.get('/', async (req, res) => {
@@ -63,13 +63,13 @@ router.get('/sign-up', async (req, res) => {
     }
 });
 
-router.post('/sign-up', validate, async (req, res) => {
+router.post('/sign-up', validatePasswordLength, async (req, res) => {
     const { username, password } = req.body;
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = await User.create({ username, password: hashedPassword });
-console.log('new user: ', newUser);
+
         res.redirect('/log-in');
       } catch (error) {
         console.error('sign up unsuccessful: ', error);
