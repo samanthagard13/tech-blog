@@ -2,9 +2,9 @@
     <h1>Recent Posts</h1>
 </div>
 
-{{#each BlogPost}}
+{{#each allPosts}}
 
-<div class="flex-container card blog-post">
+<div class="container card w-75 mt-3 blog-post">
     
     <div class="card-body">
         
@@ -14,7 +14,7 @@
             <h2>{{ title }}</h2>
         </div>
         <div class="col-6 name-date">
-            <p>{{ name }} {{ formatDate dateCreated }}</p>
+            <p>{{ user_id }} {{ format_date dateCreated }}</p>
         </div>
 
         </div>
@@ -22,6 +22,11 @@
         <div class="row">
             <div class="col-12 content">
                 <p>{{ contents }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p>{{ comments }}</p>
             </div>
         </div>
 

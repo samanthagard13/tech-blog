@@ -9,7 +9,7 @@ function validatePasswordLength(req, res, next) {
   };
 
   const requireAuth = (req, res, next) => {
-    if (req.session.user_id) {
+    if (req.sessions.user_id) {
         // User is logged in
         res.locals.loggedIn = true;
     } else {

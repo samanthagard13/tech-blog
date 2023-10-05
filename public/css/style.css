@@ -42,3 +42,10 @@ textarea {
     background-color: rgb(207, 207, 207);
     border-radius: 5px;
 }
+
+@media only screen and (max-width: 500px) {
+    .logo-img {
+        width: 200px;
+        height: auto;
+    }
+}
