@@ -18,6 +18,12 @@ a.nav-link {
     color: white;
 }
 
+.comment-btn {
+    border: none;
+    background-color: rgb(207, 207, 207);
+    border-radius: 5px;
+}
+
 /* log in page */
 
 .logIn-btn,

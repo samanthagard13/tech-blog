@@ -4,8 +4,8 @@ const postBtn = $('#newPost-btn');
 const makePost = async (event) => {
     event.preventDefault();
 
-    const title = $('#new-title');
-    const post = $('#new-post');
+    const title = $('#new-title').val();
+    const post = $('#new-post').val();
 
     if ( title && post) {
         try {
