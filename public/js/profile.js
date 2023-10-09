@@ -12,7 +12,7 @@ const makePost = async (event) => {
         try {
             const response = await fetch('/profile', {
                 method: 'POST',
-                body: JSON.stringify({ username, title, date_created, contents: post, comments: []  }),
+                body: JSON.stringify({ title, date_created, contents: post, comments: []  }),
                 headers: { 'Content-Type': 'application/json' },
             });
             if (response.ok) {
