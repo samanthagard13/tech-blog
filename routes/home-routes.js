@@ -48,7 +48,7 @@ router.post("/log-in", async (req, res) => {
 
     req.session.user_id = user.id;
 
-    res.redirect("/");
+    res.redirect("profile");
     //res.status(200).json({ message: 'Login successful', user });
   } catch (err) {
     console.error(err);
@@ -77,7 +77,7 @@ router.post("/sign-up", validatePasswordLength, async (req, res) => {
   }
 });
 
-router.get("/profile", (req, res) => {
+router.get("/profile", requireAuth, async (req, res) => {
   try {
     res.render("profile");
   } catch (error) {
@@ -104,8 +104,17 @@ router.post("/profile", async (req, res) => {
   }
 });
 
-router.get('/single-post', async (req, res) => {
+router.post('/logout', async (req, res) => {
 
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.redirect('/');
+    }
+  });
 });
+
 
 module.exports = router;
