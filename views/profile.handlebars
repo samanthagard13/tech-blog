@@ -1,42 +1,73 @@
 <div class="container d-flex align-items-center justify-content-center">
-<div class="card-body w-75 mt-5">
+  <div class="card-body w-75 mt-5">
     <div class="card">
-        <h1 class="text-center mt-3">New Post</h1>
-        <div class="input-group p-2">
-            <input class="mt-4 new-title" placeholder="Title">
-            <textarea class="w-100 new-post" placeholder="New Post"></textarea>
-            <button class="m-2 p-2 newPost-btn">Post</button>
-        </div>
+      <h1 class="text-center mt-3">New Post</h1>
+      <div class="input-group p-2">
+        <input
+          class="mt-4 p-2 m-2 new-title"
+          id="new-title"
+          placeholder="Title"
+        />
+        <textarea
+          class="w-100 p-2 m-2 new-post"
+          id="new-post"
+          placeholder="New Post"
+        ></textarea>
+        <button class="m-2 p-2 newPost-btn" id="newPost-btn">Post</button>
+      </div>
     </div>
-</div>
+  </div>
 </div>
 
 <div class="text-center mt-4 recPosts">
-    <h1>Your Posts</h1>
+  <h1>Your Posts</h1>
 </div>
 
-{{#each BlogPost}}
+{{#each allPosts}}
 
-<div class="flex-container w-75 card blog-post">
+  <div class="container card w-75 mt-3 blog-post">
+
     <div class="card-body">
-        <div class="row">
-        <div class="col-6 title">
-            <h2>{{ BlogPost.title }}</h2>
+
+      <div class="row m-2">
+
+        <div class="col-8 title ml-2 border-bottom">
+          <h2 class="p-1">{{title}}</h2>
         </div>
-        <div class="col-6 name-date">
-            <p>{{ BlogPost.username }} {{ BlogPost.dateCreated }}</p>
+        <div class="col-4 name-date border-bottom">
+          <p>{{user_id}} {{format_date dateCreated}}</p>
         </div>
-        </div>
+
+      </div>
+
+      <div class="row m-2">
         <div class="col-12 content">
-            <p>{{ BlogPost.contents }}</p>
+          <p class="p-1 m-2">{{contents}}</p>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <p>{{ BlogPost.comments }}</p>
-            </div>
+      </div>
+      {{#if comments}}
+        <div class="row border m-2 mt-2">
+          <div class="col-12">
+            <h4 class="border-bottom p-1 m-1">Comments</h4>
+            <p class="m-2">{{comments}}</p>
+          </div>
         </div>
+      {{/if}}
+      <div class="row border m-2 mt-4">
+        <div class="col-12">
+          <h4 class="p-1 m-1">Add Comment</h4>
+          <div class="input-form">
+            <input type="textarea" id="new-comment" />
+            <button
+              class="m-2 comment-btn"
+              id="comment-btn"
+              type="submit"
+            >Post</button>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+
+  </div>
 
 {{/each}}
-

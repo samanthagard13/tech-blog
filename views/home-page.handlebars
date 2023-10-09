@@ -4,16 +4,16 @@
 
 {{#each allPosts}}
 
-<div class="container card w-75 mt-3 blog-post">
+<div class="container card w-75 mt-4 blog-post">
     
     <div class="card-body">
         
-        <div class="row">
+        <div class="row m-2">
 
         <div class="col-8 title ml-2 border-bottom">
             <h2 class="p-1">{{ title }}</h2>
         </div>
-        <div class="col-4 name-date">
+        <div class="col-4 name-date border-bottom">
             <p>{{ user_id }} {{ format_date dateCreated }}</p>
         </div>
 
@@ -21,23 +21,23 @@
 
         <div class="row m-2">
             <div class="col-12 content">
-                <p class="p-1">{{ contents }}</p>
+                <p class="p-1 m-2">{{ contents }}</p>
             </div>
         </div>
         {{#if comments}}
         <div class="row border m-2 mt-2">
             <div class="col-12">
-                <h4 class="border-bottom p-1">Comments</h4>
-                <p>{{ comments }}</p>
+                <h4 class="border-bottom p-1 m-1">Comments</h4>
+                <p class="m-2">{{ comments }}</p>
             </div>
         </div>
         {{/if}}
-        <div class="row border m-2 mt-2">
+        <div class="row border m-2 mt-4">
             <div class="col-12">
-                <h4>Add Comment</h4>
+                <h4 class="p-1 m-1">Add Comment</h4>
                 <div class="input-form">
-                    <input type="textarea">
-                    <button class="m-2 comment-btn" type="submit">Post</button>
+                    <input type="textarea" id="new-comment">
+                    <button class="m-2 comment-btn" id="comment-btn" type="submit">Post</button>
                 </div>
             </div>
         </div>

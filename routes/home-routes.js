@@ -1,16 +1,17 @@
 const router = require("express").Router();
 const { BlogPost, User } = require("../models/index");
-const { validatePasswordLength } = require("../utils/login");
+const { validatePasswordLength, requireAuth } = require("../utils/login");
 const bcrypt = require("bcrypt");
 
-router.get("/", async (req, res) => {
+router.get("/", requireAuth, async (req, res) => {
   try {
     const posts = await BlogPost.findAll();
-    // This is looping over all the post from the DB and only returning the data portion
     const allPosts = posts.map((post) => post.get({ plain: true }));
+
     res.render("home-page", { allPosts });
   } catch (error) {
     console.error("Error rendering main page: ", error);
+    res.status(500).send("Internal Server Error");
   }
 });
 
@@ -101,6 +102,10 @@ router.post("/profile", async (req, res) => {
     console.error("Error creating blog post:", error);
     res.status(500).json({ message: "Internal server error" });
   }
+});
+
+router.get('/single-post', async (req, res) => {
+
 });
 
 module.exports = router;

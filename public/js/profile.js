@@ -1,4 +1,3 @@
-// POST blog post functionslity
 const postBtn = $('#newPost-btn');
 
 const makePost = async (event) => {
@@ -29,5 +28,3 @@ const makePost = async (event) => {
     };
 
 postBtn.on('click', makePost);
-
-//check mysql db for posts
