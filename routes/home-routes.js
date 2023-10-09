@@ -47,6 +47,7 @@ router.post("/log-in", async (req, res) => {
     }
 
     req.session.user_id = user.id;
+    req.session.username = username;
 
     res.redirect("profile");
     //res.status(200).json({ message: 'Login successful', user });
@@ -86,9 +87,11 @@ router.get("/profile", requireAuth, async (req, res) => {
 });
 
 router.post("/profile", async (req, res) => {
+  const username = req.session.username;
   const { title, dateCreated, contents, comments } = req.body;
   try {
     const newPost = await BlogPost.create({
+      username,
       title,
       dateCreated,
       contents,
