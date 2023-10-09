@@ -78,16 +78,23 @@ router.post("/sign-up", validatePasswordLength, async (req, res) => {
   }
 });
 
-router.get("/profile", requireAuth, async (req, res) => {
+router.get("/profile", requireAuth, async (req, res) => { 
+  const username = req.session.username;
+  
+
+//find by user all posts
+
   try {
-    res.render("profile");
+    res.render("profile", { username });
   } catch (error) {
     console.error(" Error displaying login page: ", error);
   }
 });
 
-router.post("/profile", async (req, res) => {
+router.post("/profile", requireAuth, async (req, res) => {
+  
   const username = req.session.username;
+
   const { title, dateCreated, contents, comments } = req.body;
   try {
     const newPost = await BlogPost.create({

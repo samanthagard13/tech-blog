@@ -3,16 +3,17 @@ const postBtn = $('#newPost-btn');
 const makePost = async (event) => {
     event.preventDefault();
 
+ 
     const title = $('#new-title').val();
     const post = $('#new-post').val();
     
-    const date_created = new Date().toISOString();
+    const dateCreated = new Date().toISOString();
 
     if ( title && post) {
         try {
             const response = await fetch('/profile', {
                 method: 'POST',
-                body: JSON.stringify({ title, date_created, contents: post, comments: []  }),
+                body: JSON.stringify({ title, dateCreated, contents: post, comments: []  }),
                 headers: { 'Content-Type': 'application/json' },
             });
             if (response.ok) {
