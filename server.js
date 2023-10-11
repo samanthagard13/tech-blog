@@ -32,6 +32,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/css', express.static(path.join(__dirname, 'public/css'), { 'Content-Type': 'text/css' }));
+app.use('/js', express.static(path.join(__dirname, 'public/js'), { 'Content-Type': 'text/javascript' }));
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
+
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
