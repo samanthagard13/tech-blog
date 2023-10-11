@@ -79,11 +79,10 @@ router.post("/sign-up", validatePasswordLength, async (req, res) => {
 
 router.get("/profile/:user_id", requireAuth, async (req, res) => { 
   const username = req.session.username;
+  const postId = req.params.id;
   
   
-  const userPosts = await BlogPost.findAll ({
-    where: {username}, 
-  });
+  const userPosts = await BlogPost.findByPk(postId);
 
   try {
     res.render("profile", { username, userPosts });
