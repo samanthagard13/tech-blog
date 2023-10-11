@@ -1,4 +1,5 @@
-const commentBtn = $('#comment-btn')
+const commentBtn = $('#comment-btn');
+const postCards = $('.postCards');
 
 const addComment = async (event) => {
     event.preventDefault();
@@ -26,4 +27,23 @@ const addComment = async (event) => {
         
     };
 
+    const singlePost = async () => {
+      try {
+        const response = await fetch('/post/:id', {
+          method: 'GET',
+        });
+    
+        if (response.ok) {
+          const postData = await response.json();
+          console.log('Viewing single post:', postData);
+        } else {
+          alert(response.statusText);
+        }
+      } catch (error) {
+        console.error('Error viewing post:', error);
+      }
+    };
+    
+
+    postCards.on('click', singlePost);
     commentBtn.on('click', addComment);

@@ -50,7 +50,7 @@ textarea {
 }
 
 @media only screen and (max-width: 500px) {
-    .logo-img {
+    img {
         width: 200px;
         height: auto;
     }

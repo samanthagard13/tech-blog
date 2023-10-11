@@ -9,16 +9,18 @@ const logIn = async (event) => {
 
   if (username && password) {
     try {
-      const response = await fetch("/log-in", {
+       const response = await fetch("/log-in", {
         method: "POST",
         body: JSON.stringify({ username, password }),
         headers: { "Content-Type": "application/json" },
-      });
-
-      if (response.ok) {
-        document.location.replace("/profile");
+      })
+      const data = await response.json()
+      console.log(data);
+      if (data) {
+        
+        document.location.replace(`/profile/${data.user.id}`);
       } else {
-        alert(response.statusText);
+        alert(data.statusText);
       }
     } catch (error) {
       console.error("Error during login:", error);

@@ -45,12 +45,11 @@ router.post("/log-in", async (req, res) => {
     if (!user || !user.checkPassword(password)) {
       return res.status(401).json({ message: "Invalid login credentials" });
     }
-
+console.log(req.body, user);
     req.session.user_id = user.id;
     req.session.username = username;
 
-    res.redirect("profile");
-    //res.status(200).json({ message: 'Login successful', user });
+    res.status(200).json({ message: 'Login successful', user });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
@@ -78,14 +77,16 @@ router.post("/sign-up", validatePasswordLength, async (req, res) => {
   }
 });
 
-router.get("/profile", requireAuth, async (req, res) => { 
+router.get("/profile/:user_id", requireAuth, async (req, res) => { 
   const username = req.session.username;
   
-
-//find by user all posts
+  
+  const userPosts = await BlogPost.findAll ({
+    where: {username}, 
+  });
 
   try {
-    res.render("profile", { username });
+    res.render("profile", { username, userPosts });
   } catch (error) {
     console.error(" Error displaying login page: ", error);
   }

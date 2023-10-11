@@ -27,7 +27,7 @@
   <h1>Your Posts</h1>
 </div>
 
-{{#each allPosts}}
+{{#each userPosts}}
 
   <div class="container card w-75 mt-3 blog-post">
 
@@ -39,7 +39,7 @@
           <h2 class="p-1">{{title}}</h2>
         </div>
         <div class="col-4 name-date border-bottom">
-          <p>{{user_id}} {{format_date dateCreated}}</p>
+          <p>{{username}} {{format_date dateCreated}}</p>
         </div>
 
       </div>
