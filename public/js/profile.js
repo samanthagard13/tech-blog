@@ -18,6 +18,7 @@ const makePost = async (event) => {
             });
             if (response.ok) {
                 console.log('post created.');
+                location.reload();
             } else {
                 alert(response.statusText);
               }

@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { post } = require("jquery");
 const { BlogPost, User } = require("../models/index");
 const { validatePasswordLength, requireAuth } = require("../utils/login");
 const bcrypt = require("bcrypt");
@@ -17,7 +18,7 @@ router.get("/", requireAuth, async (req, res) => {
 
 router.get("/post/:id", async (req, res) => {
   const postId = req.params.id;
-
+  console.log(postId);
   try {
     const post = await BlogPost.findByPk(postId);
 
@@ -45,11 +46,11 @@ router.post("/log-in", async (req, res) => {
     if (!user || !user.checkPassword(password)) {
       return res.status(401).json({ message: "Invalid login credentials" });
     }
-console.log(req.body, user);
+    console.log(req.body, user);
     req.session.user_id = user.id;
     req.session.username = username;
 
-    res.status(200).json({ message: 'Login successful', user });
+    res.status(200).json({ message: "Login successful", user });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
@@ -77,13 +78,12 @@ router.post("/sign-up", validatePasswordLength, async (req, res) => {
   }
 });
 
-router.get("/profile/:user_id", requireAuth, async (req, res) => { 
+router.get("/profile/:user_id", requireAuth, async (req, res) => {
   const username = req.session.username;
-  const postId = req.params.id;
-  
-  
-  const userPosts = await BlogPost.findByPk(postId);
+  const postId = req.params.user_id;
 
+  const userPosts = await BlogPost.findByPk(postId);
+  console.log(username, userPosts);
   try {
     res.render("profile", { username, userPosts });
   } catch (error) {
@@ -92,7 +92,6 @@ router.get("/profile/:user_id", requireAuth, async (req, res) => {
 });
 
 router.post("/profile", requireAuth, async (req, res) => {
-  
   const username = req.session.username;
 
   const { title, dateCreated, contents, comments } = req.body;
@@ -114,17 +113,15 @@ router.post("/profile", requireAuth, async (req, res) => {
   }
 });
 
-router.post('/logout', async (req, res) => {
-
+router.post("/logout", async (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      console.error('Error destroying session:', err);
-      res.status(500).send('Internal Server Error');
+      console.error("Error destroying session:", err);
+      res.status(500).send("Internal Server Error");
     } else {
-      res.redirect('/');
+      res.redirect("/");
     }
   });
 });
-
 
 module.exports = router;
