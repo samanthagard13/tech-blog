@@ -5,6 +5,7 @@ const routes = require("./routes");
 const exphbs = require("express-handlebars");
 const { helpers } = require("./utils/helpers");
 
+
 const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
@@ -36,9 +37,6 @@ app.set("view engine", "handlebars");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "/public")));
-// app.use('/css', express.static(path.join(__dirname, 'public/css'), { 'Content-Type': 'text/css' }));
-// app.use('/js', express.static(path.join(__dirname, 'public/js'), { 'Content-Type': 'text/javascript' }));
-// app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 app.use(routes);
 

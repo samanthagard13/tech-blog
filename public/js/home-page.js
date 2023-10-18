@@ -1,5 +1,25 @@
 const commentBtn = $("#comment-btn");
 const postCards = $(".postCards");
+const dash = $("#dash");
+
+const goProfile = async (event) => {
+
+  try {
+    const response = await fetch(`/profile/${user.dataValues.id}`, {
+      method: "GET",
+    })
+
+    const data = await response.json();
+
+    if (data.user) {
+      document.location.replace(`/profile/${data.user.id}`);
+    } else {
+      alert("User data not found");
+    }
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
+};
 
 const addComment = async (event) => {
   event.preventDefault();
@@ -47,3 +67,4 @@ const singlePost = async (event) => {
 
 postCards.on("click", singlePost);
 commentBtn.on("click", addComment);
+dash.on("click", goProfile);

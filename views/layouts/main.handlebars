@@ -50,7 +50,7 @@
             </li>
             {{#if loggedIn}}
               <li class="nav-item">
-                <a class="nav-link" href="/profile/{{user_id}}">Dashboard</a>
+                <a class="nav-link" href="/profile/:user_id" >Dashboard</a>
               </li>
             {{/if}}
             {{#unless loggedIn}}
