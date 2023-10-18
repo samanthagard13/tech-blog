@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { post } = require("jquery");
 const { BlogPost, User } = require("../models/index");
 const { validatePasswordLength, requireAuth } = require("../utils/login");
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 
 router.get("/", requireAuth, async (req, res) => {
   try {
@@ -68,7 +68,7 @@ router.get("/sign-up", async (req, res) => {
 router.post("/sign-up", validatePasswordLength, async (req, res) => {
   const { username, password } = req.body;
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcryptjs.hash(password, 10);
 
     const newUser = await User.create({ username, password: hashedPassword });
 
