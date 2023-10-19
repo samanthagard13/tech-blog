@@ -46,9 +46,12 @@ router.post("/log-in", async (req, res) => {
     if (!user || !user.checkPassword(password)) {
       return res.status(401).json({ message: "Invalid login credentials" });
     }
-    console.log(req.body, user);
-    req.session.user_id = user.id;
-    req.session.username = username;
+
+    req.session.user = {
+      username: user.username,
+      password: user.password,
+      user_id: user.id,
+    };
 
     res.status(200).json({ message: "Login successful", user });
   } catch (err) {
@@ -79,19 +82,22 @@ router.post("/sign-up", validatePasswordLength, async (req, res) => {
 });
 
 router.get("/profile/:user_id", requireAuth, async (req, res) => {
-  const username = req.session.username;
-  const postId = req.params.user_id;
+  const { username, user_id } = req.session.user;
 
-  const userPosts = await BlogPost.findByPk(postId);
-  console.log(username, userPosts);
   try {
+    const userPosts = await BlogPost.findAll({
+      where: {
+        user_id: user_id,
+      },
+    });
+
     res.render("profile", { username, userPosts });
   } catch (error) {
     console.error(" Error displaying login page: ", error);
   }
 });
 
-router.post("/profile", requireAuth, async (req, res) => {
+router.post("/profile/:user_id", requireAuth, async (req, res) => {
   const username = req.session.username;
 
   const { title, dateCreated, contents, comments } = req.body;

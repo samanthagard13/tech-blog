@@ -22,6 +22,8 @@
     <title>The Tech Blog</title>
   </head>
 
+ 
+
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary mt-5 p-3">
       <div class="container-fluid">
@@ -50,7 +52,7 @@
             </li>
             {{#if loggedIn}}
               <li class="nav-item">
-                <a class="nav-link" href="/profile/:user_id" >Dashboard</a>
+                <a class="nav-link" href="/profile/{{data.user.id}}" >My Profile</a>
               </li>
             {{/if}}
             {{#unless loggedIn}}
@@ -74,6 +76,14 @@
     {{{body}}}
 
   </main>
+
+  <footer class="footer py-3 bg-light mt-5 mb-5 p-3">
+        <div class="container text-center p-2">
+          <h3 class="m-1">Want More Info About This Site?</h3>
+            <a href="https://github.com/samanthagard13/tech-blog" target="blank">Tech Blog GitHub</a>
+            <p>samantha.gard13@gmail.com</p>
+        </div>
+  </footer>
 
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="/js/home-page.js"></script>

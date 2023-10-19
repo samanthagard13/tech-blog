@@ -14,13 +14,31 @@ const logIn = async (event) => {
         body: JSON.stringify({ username, password }),
         headers: { "Content-Type": "application/json" },
       })
-      const data = await response.json()
-      console.log(data);
-      if (data) {
-        
-        document.location.replace(`/profile/${data.user.id}`);
+      
+      if (response.ok) {
+        const { user_id } = await response.json();
+        try {
+          const profileResponse = await fetch(`/profile/${user_id}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+          });
+
+          if (profileResponse.ok) {
+
+            const profile = await profileResponse.json();
+            document.location.replace("/profile");
+            
+          } else {
+            console.error("Error fetching profile data:", profileResponse.statusText);
+            alert("Error fetching profile data. Please try again.");
+          }
+        } catch (innerError) {
+          console.error("Error fetching profile data:");
+          alert("An error occurred while fetching profile data.");
+        }
       } else {
-        alert(data.statusText);
+        console.error("Error during login:", data.statusText);
+        alert("Login failed. Please check your credentials and try again.");
       }
     } catch (error) {
       console.error("Error during login:", error);
