@@ -11,9 +11,9 @@ const makePost = async (event) => {
 
     if ( title && post) {
         try {
-            const response = await fetch('/profile', {
+            const response = await fetch('api/blog', {
                 method: 'POST',
-                body: JSON.stringify({ title, dateCreated, contents: post, comments: []  }),
+                body: JSON.stringify({ title: title, dateCreated: dateCreated, contents: post, comments: []  }),
                 headers: { 'Content-Type': 'application/json' },
             });
             if (response.ok) {
