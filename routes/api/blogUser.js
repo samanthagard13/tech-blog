@@ -45,6 +45,7 @@ router.post("/log-in", async (req, res) => {
       req.session.loggedIn = true;
 
       res.status(200).json({ user, message: "you logged in dood" });
+      console.log(user.username, user.id);
     });
   } catch (err) {
     console.error(err);
@@ -73,19 +74,15 @@ router.post("/logout", async (req, res) => {
 });
 
 
-  router.get('/users', async (req,res)=> {
-
-    try{
-      console.log(User, "ypyoyooyo")
-      const users = await User.findAll()
-      console.log(users)
-       return res.json(users)
-    }catch (hands){
-      console.error(hands)
-      res.status(500).json(hands)
-    }
-    
-  })
-  
+router.get('/users', async (req, res) => {
+  try {
+      const users = await User.findAll();
+      res.json(users);
+  } catch (error) {
+      console.error('Error fetching users:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+});
+   
 
 module.exports = router;
