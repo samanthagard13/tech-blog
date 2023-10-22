@@ -9,9 +9,9 @@ const logIn = async (event) => {
 
   if (username && password) {
     try {
-      const response = await fetch("/log-in", {
+      const response = await fetch("/api/blogUser/log-in", {
         method: "POST",
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username: username, password: password }),
         headers: { "Content-Type": "application/json" },
       });
 
@@ -27,7 +27,7 @@ const logOut = async (event) => {
   event.preventDefault();
 
   try {
-    const response = await fetch("/logout", {
+    const response = await fetch("api/blogUser/logout", {
       method: "POST",
     });
 

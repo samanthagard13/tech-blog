@@ -2,19 +2,21 @@ const router = require('express').Router();
 const { BlogPost } = require('../models/');
 const { requireAuth } = require("../utils/login");
 
-router.get("/", requireAuth, async (req, res) => {
-    const { username, user_id } = req.session.user;
-  
+router.get("/",  async (req, res) => {   
+ 
     try {
-      const userPosts = await BlogPost.findAll({
+      const loggedIn = req.session.loggedIn
+      const userPostsData = await BlogPost.findAll({
         where: {
-          user_id: user_id,
+          user_id: req.session.id,
         },
       });
-  
-      res.render("profile", { username, userPosts });
+     
+      const userPosts = userPostsData.map((post) => post.get({plain: true}))
+    
+        res.render("profile", {  userPosts , loggedIn });     
     } catch (error) {
-      console.error(" Error displaying login page: ", error);
+      console.error(" Error displaying login page: ", error);     
     }
   });
 

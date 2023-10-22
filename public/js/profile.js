@@ -13,7 +13,11 @@ const makePost = async (event) => {
         try {
             const response = await fetch('api/blog', {
                 method: 'POST',
-                body: JSON.stringify({ title: title, dateCreated: dateCreated, contents: post, comments: []  }),
+                body: JSON.stringify({
+                   title: title,
+                    dateCreated: dateCreated, 
+                    contents: post,                    
+                   }),
                 headers: { 'Content-Type': 'application/json' },
             });
             if (response.ok) {

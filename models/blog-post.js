@@ -10,11 +10,7 @@ BlogPost.init(
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    },    
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -28,10 +24,7 @@ BlogPost.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    comments: {
-      type: DataTypes.JSON,
-      allowNull: true,
-    },
+ 
   },
   {
     sequelize,
@@ -42,3 +35,4 @@ BlogPost.init(
 );
 
 module.exports = BlogPost;
+

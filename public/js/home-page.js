@@ -1,20 +1,21 @@
-const commentBtn = $("#comment-btn");
-const postCards = $(".postCards");
+const commentBtn = $(".comment-section");
+
 
 const addComment = async (event) => {
   event.preventDefault();
-
-  const newComment = $("#new-comment").val();
-
+  const postId = $('input[name="post-id"]').val()
+  const newComment = $('textarea[name="comment-body"]').val();
+  console.log(postId, newComment,"fakkkkk")
   if (newComment) {
     try {
-      const response = await fetch("/home-page", {
+      const response = await fetch("/api/blogComment", {
         method: "POST",
-        body: JSON.stringify(newComment),
+        body: JSON.stringify( { body: newComment, postId}),
         headers: { "Content-Type": "application/json" },
       });
       if (response.ok) {
-        console.log("comment posted.");
+        console.log("comment posted.")
+        document.location.reload();
       } else {
         alert(response.statusText);
       }
@@ -26,25 +27,5 @@ const addComment = async (event) => {
   }
 };
 
-const singlePost = async (event) => {
-  try {
-    console.log(event.target.id);
-    let id = event.target.id;
-    const response = await fetch(`/post/${id}`, {
-      method: "GET",
-    });
 
-    if (response.ok) {
-      const postData = await response.json();
-      console.log("Viewing single post:", postData);
-    } else {
-      alert(response.statusText);
-    }
-  } catch (error) {
-    console.error("Error viewing post:", error);
-  }
-};
-
-postCards.on("click", singlePost);
-commentBtn.on("click", addComment);
-
+commentBtn.on("submit", addComment);
