@@ -30,13 +30,13 @@ router.post("/log-in", async (req, res) => {
     });
 
     if (!user) {
-      return res.status(400).json({ message: "nobody there" });
+      return res.status(400).json({ message: "username does not match our records" });
     }
 
     const goodPassword = user.checkPassword(req.body.password);
 
     if (!goodPassword) {
-      return res.status(401).json({ message: "ya blew it" });
+      return res.status(401).json({ message: "password does not match our records" });
     }
 
     req.session.save(() => {
@@ -44,7 +44,8 @@ router.post("/log-in", async (req, res) => {
       req.session.username = user.username;
       req.session.loggedIn = true;
 
-      res.status(200).json({ user, message: "you logged in dood" });
+      res.status(200).json({ user, message: "logged in" });
+      console.log("Session Data: ", req.session);
       console.log(user.username, user.id);
     });
   } catch (err) {
