@@ -6,7 +6,7 @@ router.get("/",  requireAuth, async (req, res) => {
  
     try {
       const loggedIn = req.session.loggedIn;
-      const username = req.sessionID.ussername;
+      const username = req.sessionID.username;
 
       const userPostsData = await BlogPost.findAll({
         where: {

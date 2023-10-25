@@ -9,7 +9,7 @@ const makePost = async (event) => {
 
     if ( title && post) {
         try {
-          const response = await fetch('/api/users ', {
+          const response = await fetch('/', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         });
