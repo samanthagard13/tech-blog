@@ -16,7 +16,7 @@ const makePost = async (event) => {
         if (response.ok) {
           const { username } = await response.json();
 
-          const postResponse = await fetch('api/blog', {
+          const postResponse = await fetch('/', {
             method: 'POST',
             body: JSON.stringify({
                 title: title,
