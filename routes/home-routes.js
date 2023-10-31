@@ -3,11 +3,15 @@ const { BlogPost, User, BlogComment } = require("../models/index");
 
 router.get("/",  async (req, res) => {
   try {     
-    const posts = await BlogPost.findAll();
+    const posts = await BlogPost.findAll({
+      include: User,
+    });
     const allPosts = posts.map((post) => post.get({ plain: true }));
+
     const loggedIn = req.session.loggedIn
  
       res.render("home-page", { allPosts, loggedIn });    
+      console.log(allPosts);
   } catch (error) {
     console.error("Error rendering main page: ", error);
     res.status(500).send("Internal Server Error");

@@ -1,11 +1,11 @@
-const commentBtn = $(".comment-section");
+const commentBtn = $(".comment-btn");
 
 
 const addComment = async (event) => {
   event.preventDefault();
   const postId = $('input[name="post-id"]').val()
   const newComment = $('textarea[name="comment-body"]').val();
-  console.log(postId, newComment,"fakkkkk")
+
   if (newComment) {
     try {
       const response = await fetch("/api/blogComment", {
@@ -26,6 +26,5 @@ const addComment = async (event) => {
     alert("Please fill in comment field.");
   }
 };
-
 
 commentBtn.on("submit", addComment);
