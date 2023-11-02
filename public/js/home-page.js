@@ -1,16 +1,16 @@
 const commentBtn = $(".comment-btn");
-
+const postCards = $("#post-card");
 
 const addComment = async (event) => {
   event.preventDefault();
-  const postId = $('input[name="post-id"]').val()
-  const newComment = $('textarea[name="comment-body"]').val();
+
+  const newComment = $("#new-comment").val();
 
   if (newComment) {
     try {
       const response = await fetch("/api/blogComment", {
         method: "POST",
-        body: JSON.stringify( { body: newComment, postId}),
+        body: JSON.stringify( { body: newComment}),
         headers: { "Content-Type": "application/json" },
       });
       if (response.ok) {
@@ -27,4 +27,24 @@ const addComment = async (event) => {
   }
 };
 
-commentBtn.on("submit", addComment);
+const viewPost = async (event) => {
+  event.preventDefault();
+
+  try {
+
+    const response = await fetch("/post/:id", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    if (response.ok) {
+      document.location.replace('single-post');
+    } else {
+      console.error("Failed to fetch post data.");
+    }
+  } catch (error) {
+    console.error("Error fetching post:", error);
+  }
+};
+
+commentBtn.on("click", addComment);
+postCards.on("click", viewPost);

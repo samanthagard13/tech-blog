@@ -2,25 +2,27 @@ const router = require('express').Router();
 const {BlogComment, User} = require('../../models/')
 
 
-router.post('/', async (req,res)=>{
+router.post('/', async (req, res) => {
     try {
-        const blog_id = req.body
-        const user_id = req.session.id
-       const postData = await BlogComment.create({
-        ...blog_id,
-        ...user_id  
-       })
-       console.log(postData)
-       return res.json(postData) 
-    } catch (hands) {
-        console.error(hands)
-        res.status(500).json(hands)
-        
+        const { user_id, body, postId } = req.body;
+
+        const postData = await BlogComment.create({
+            user_id,
+            body,
+            postId
+        });
+
+        console.log(postData);
+        return res.json(postData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
     }
 });
 
 
-router.get('/comment', async (req,res)=> {
+
+router.get('/', async (req,res)=> {
     try {
        const commentData = await BlogComment.findAll({
         inlude: [User]
