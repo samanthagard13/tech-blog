@@ -24,20 +24,20 @@ const makePost = async (event) => {
     }}
 }
 
-const personalPosts = async () => {
+// const personalPosts = async () => {
     
-    try {
-        const response = await fetch("/profile", {
-            method: "GET",
-            // headers: { 'Content-Type': 'application/json' },
-        });
-        if (response.ok) {
-            document.location.replace("/profile");
-      }
-    } catch (err) {
-      console.error(err);
-    }}
+//     try {
+//         const response = await fetch("/profile", {
+//             method: "GET",
+//             headers: { 'Content-Type': 'application/json' },
+//         });
+//         if (response.ok) {
+//             document.location.replace("/profile");
+//       }
+//     } catch (err) {
+//       console.error(err);
+//     }}
 
-personalPosts();
+// personalPosts();
 
 postBtn.on('click', makePost);

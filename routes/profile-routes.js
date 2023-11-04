@@ -18,7 +18,7 @@ router.get("/",  requireAuth, async (req, res) => {
       const userPosts = userPostsData.map((post) => post.get({plain: true}));
     
         res.render("profile", {  userPosts , loggedIn , username });     
-        res.json(userPosts);
+        // res.json(userPosts);
 console.log(userPosts);
     } catch (error) {
       console.error(" Error displaying login page: ", error);     
