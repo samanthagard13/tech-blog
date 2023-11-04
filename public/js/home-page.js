@@ -27,12 +27,12 @@ const addComment = async (event) => {
   }
 };
 
-const viewPost = async (event) => {
+const viewPost = async (event, postId) => {
   event.preventDefault();
 
   try {
 
-    const response = await fetch("/post/:id", {
+    const response = await fetch(`/post/${postId}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
