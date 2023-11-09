@@ -1,5 +1,4 @@
 const commentBtn = $(".comment-btn");
-// const postCard = $(".blog-post");
 
 const addComment = async (event) => {
   event.preventDefault();
@@ -27,23 +26,19 @@ const addComment = async (event) => {
   }
 };
 
-$(document).ready(function() {
-  $('#post-container').on('click', '.view-post', function(event) {
-    const postId = $(this).closest('.blog-post').data('post-id');
-    viewPost(event, postId);
-  });
-});
 
 const viewPost = async (event, postId) => {
   event.preventDefault();
 
+  const clickedPost = $(event.target).closest('.blog-post').data('post-id');
+
   try {
-    const response = await fetch(`/post/${postId}`, {
+    const response = await fetch(`/post/${clickedPost}`, {
       method: 'GET',
     });
 
     if (response.ok) {
-      window.location.href = '/single-post';
+      document.location.replace('/single-post')
     } else {
       console.error('Error fetching post details:', response.statusText);
       window.location.href = '/error';
@@ -54,6 +49,5 @@ const viewPost = async (event, postId) => {
   }
 };
 
-
 commentBtn.on("click", addComment);
-// postCard.on("click", viewPost);
+$('.post-container').on('click', '.blog-post', viewPost);
