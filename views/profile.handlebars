@@ -27,19 +27,22 @@
   <h1>Your Posts</h1>
 </div>
 
-{{#each UserPosts}}
+{{#each userPosts}}
 
-   <div class="container card w-75 mt-4 blog-post" id="postCards">
+   <div class="container card w-75 mt-4 blog-post"  data-post-id="{{id}}">
 
     <div class="card-body postCards">
 <div class="border m-2">
       <div class="row m-2">
 
-        <div class="col-lg-8 col-sm-10 title ml-2 border-bottom">
+        <div class="col-lg-6 col-sm-6 title ml-2 border-bottom">
           <h2 class="p-1">{{title}}</h2>
         </div>
-        <div class="col-lg-4 col-sm-10 name-date border-bottom">
-          <p class="m-2">{{username}} {{format_date dateCreated}}</p>
+        <div class="col-lg-5 col-sm-4 name-date border-bottom">
+          <p class="m-2">{{username}} {{format_date createdAt}}</p>
+        </div>
+        <div class="col-lg-1 col-sm-4 border-bottom" id="delete-btn">
+          <i class="fas fa-trash-can fa-xl m-3"></i>
         </div>
 
       </div>

@@ -2,52 +2,42 @@
   <h1>Recent Posts</h1>
 </div>
 
-{{#each allPosts}}
+<div id="post-container">
+  {{#each allPosts}}
 
-  <div class="container card w-75 mt-4 blog-post" id="post-card">
+    <div class="container card w-75 mt-4 blog-post" data-post-id="{{id}}">
+      <div class="card-body postCards">
+        <div class="border m-2">
+          <div class="row m-2">
 
-    <div class="card-body postCards">
-<div class="border m-2">
-      <div class="row m-2">
+            <div class="col-lg-8 col-sm-10 title ml-2 border-bottom">
+              <h2 class="p-1">{{title}}</h2>
+            </div>
+            <div class="col-lg-4 col-sm-10 name-date border-bottom">
+              <div class="m-2">{{User.username}} {{format_date createdAt}}</div>
+            </div>
 
-        <div class="col-lg-8 col-sm-10 title ml-2 border-bottom">
-          <h2 class="p-1">{{title}}</h2>
-        </div>
-        <div class="col-lg-4 col-sm-10 name-date border-bottom">
-          <div class="m-2">{{User.username}} {{format_date createdAt}}</div>
-        </div>
+          </div>
 
-      </div>
-
-      <div class="row m-2">
-        <div class="col-12 content">
-          <p class="p-1 m-2">{{contents}}</p>
-        </div>
-      </div>
-      </div>
-      {{#if comments}}
-        <div class="row border m-2 mt-2">
-          <div class="col-12">
-            <h4 class="border-bottom p-1 m-1">Comments</h4>
-            <p class="m-2">{{comments}}</p>
+          <div class="row m-2">
+            <div class="col-12 content">
+              <p class="p-1 m-2">{{contents}}</p>
+            </div>
           </div>
         </div>
-      {{/if}}
-      {{!-- <div class="row border m-2 mt-4">
-        <div class="col-12">
-          <h4 class="p-1 m-1">Add Comment</h4>
-          <div class="input-form">
-            <input type="textarea" id="new-comment" />
-            <button
-              class="m-2 comment-btn"
-              id="comment-btn"
-              type="submit"
-            >Post</button>
+        {{#if comments}}
+          <div class="row border m-2 mt-2">
+            <div class="col-12">
+              <h4 class="border-bottom p-1 m-1">Comments</h4>
+              <p class="m-2">{{comments}}</p>
+            </div>
           </div>
-        </div>
-      </div> --}}
+        {{/if}}
+
+      </div>
+
     </div>
 
-  </div>
+  {{/each}}  
 
-{{/each}}
+</div>

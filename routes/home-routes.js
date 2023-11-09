@@ -7,7 +7,7 @@ router.get("/",  async (req, res) => {
       include: User, BlogComment
     });
     const allPosts = posts.map((post) => post.get({ plain: true }));
-
+    console.log("Dataset: ", allPosts);
     const loggedIn = req.session.loggedIn
  
       res.render("home-page", { allPosts, loggedIn });    
@@ -18,8 +18,9 @@ router.get("/",  async (req, res) => {
 });
 
 router.get("/post/:id", async (req, res) => {
+  // console.log("Received postId:", req.params.id);
   const postId = req.params.id;
-  console.log(postId);
+  // console.log(postId);
   try {
     const post = await BlogPost.findByPk(postId, {
       include: [
@@ -32,7 +33,7 @@ router.get("/post/:id", async (req, res) => {
     });
     if(post){
       const clickedPost = post.get({plain: true});
-      res.render("single-post", {clickedPost} );
+      res.render("single-post", clickedPost );
     }
   } catch (error) {
     console.error(" Error displaying post: ", error);
