@@ -1,5 +1,4 @@
 const postBtn = $('#newPost-btn');
-const deleBtn = $("#delete-btn")
 
 const makePost = async (event) => {
     event.preventDefault();
@@ -28,12 +27,13 @@ const makePost = async (event) => {
 const deletePost = async (event) => {
     event.preventDefault();
 
-    const postId = event.target.dataset.postId
+    const postId = $(event.target).closest('.blog-post').data('post-id');
 
     try {
         const response = await fetch(`/profile/${postId}`, {
             method: "DELETE",
-        })
+        });
+
         if (response.ok) {
             document.location.reload();
         }
@@ -43,4 +43,5 @@ const deletePost = async (event) => {
 }
 
 postBtn.on('click', makePost);
-deleBtn.on('click', deletePost);
+$('.post-container').on('click', '.delete-btn', deletePost);
+

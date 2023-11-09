@@ -27,6 +27,7 @@
   <h1>Your Posts</h1>
 </div>
 
+<div class="post-container">
 {{#each userPosts}}
 
    <div class="container card w-75 mt-4 blog-post"  data-post-id="{{id}}">
@@ -41,8 +42,8 @@
         <div class="col-lg-5 col-sm-4 name-date border-bottom">
           <p class="m-2">{{username}} {{format_date createdAt}}</p>
         </div>
-        <div class="col-lg-1 col-sm-4 border-bottom" id="delete-btn">
-          <i class="fas fa-trash-can fa-xl m-3"></i>
+        <div class="col-lg-1 col-sm-4 border-bottom">
+          <i class="fas fa-trash-can fa-xl m-3 delete-btn"></i>
         </div>
 
       </div>
@@ -79,3 +80,4 @@
   </div>
 
 {{/each}}
+</div>

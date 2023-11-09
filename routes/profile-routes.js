@@ -2,7 +2,6 @@ const router = require('express').Router();
 const { BlogPost, User } = require('../models/');
 const { requireAuth } = require("../utils/login");
 const { sequelize } = require('../config/connection');
-const { findByPk } = require('../models/user');
 
 router.get("/",  requireAuth, async (req, res) => {   
  
