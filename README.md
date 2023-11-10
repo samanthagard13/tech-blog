@@ -8,7 +8,9 @@
 
  ## Installation
 
- Visit (https://tech-blog013-e5e7d42e12b2.herokuapp.com/)
+ Visit ![this link](https://tech-blog013-e5e7d42e12b2.herokuapp.com/)
+
+ ![screenshot](./assets/Screenshot.png)
 
  ## Usage
 
