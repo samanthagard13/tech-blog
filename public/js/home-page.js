@@ -27,7 +27,7 @@ const addComment = async (event) => {
 };
 
 
-const viewPost = async (event, postId) => {
+const viewPost = async (event) => {
   event.preventDefault();
 
   const clickedPost = $(event.target).closest('.blog-post').data('post-id');
