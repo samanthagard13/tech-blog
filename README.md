@@ -8,7 +8,7 @@
 
  ## Installation
 
- Visit [this link](https://tech-blog013-e5e7d42e12b2.herokuapp.com/)
+ Visit [this link](https://vast-oasis-81942-69906b12dced.herokuapp.com/)
 
  ![screenshot](./assets/Screenshot.png)
 
